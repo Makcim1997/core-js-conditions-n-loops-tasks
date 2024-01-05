@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,16 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(...rest) {
+  let maxNum = 0;
+
+  for (let i = 0; i < rest.length; i += 1) {
+    if (rest[i] > maxNum) {
+      maxNum = rest[i];
+    }
+  }
+
+  return maxNum;
 }
 
 /**
@@ -82,8 +90,8 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  return (a + b + c) % 3 !== 0;
 }
 
 /**
@@ -100,8 +108,34 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romanNumerals = {
+    0: '',
+    1: 'I',
+    2: 'II',
+    3: 'III',
+    4: 'IV',
+    5: 'V',
+    6: 'VI',
+    7: 'VII',
+    8: 'VIII',
+    9: 'IX',
+    10: 'X',
+  };
+
+  let str = '';
+  const numberOfTens = (num - (num % 10)) / 10;
+  const numberOfUnits = num % 10;
+
+  if (num > 9) {
+    for (let i = 0; i < numberOfTens; i += 1) {
+      str += 'X';
+    }
+    str += `${romanNumerals[numberOfUnits]}`;
+  } else {
+    str += romanNumerals[numberOfUnits];
+  }
+  return str;
 }
 
 /**
@@ -119,8 +153,55 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const str = [...numberStr];
+
+  for (let i = 0; i < str.length; i += 1) {
+    switch (str[i]) {
+      case '0':
+        str[i] = 'zero';
+        break;
+      case '1':
+        str[i] = 'one';
+        break;
+      case '2':
+        str[i] = 'two';
+        break;
+      case '3':
+        str[i] = 'three';
+        break;
+      case '4':
+        str[i] = 'four';
+        break;
+      case '5':
+        str[i] = 'five';
+        break;
+      case '6':
+        str[i] = 'six';
+        break;
+      case '7':
+        str[i] = 'seven';
+        break;
+      case '8':
+        str[i] = 'eight';
+        break;
+      case '9':
+        str[i] = 'nine';
+        break;
+      case '-':
+        str[i] = 'minus';
+        break;
+      case '.':
+        str[i] = 'point';
+        break;
+      case ',':
+        str[i] = 'point';
+        break;
+      default:
+        str[i] = '';
+    }
+  }
+  return str.join(' ');
 }
 
 /**
@@ -135,8 +216,14 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let newStr = '';
+
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    newStr += str[i];
+  }
+
+  return newStr === str;
 }
 
 /**
@@ -153,8 +240,16 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let index = -1;
+
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      index = i;
+    }
+  }
+
+  return index;
 }
 
 /**
@@ -172,8 +267,17 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const string = String(num);
+  const number = String(digit);
+
+  for (let i = 0; i < string.length; i += 1) {
+    if (string[i] === number) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 /**
