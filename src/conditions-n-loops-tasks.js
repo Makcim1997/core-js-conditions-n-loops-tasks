@@ -386,8 +386,8 @@ function getSpiralMatrix(size) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  return matrix;
 }
 
 /**
@@ -404,8 +404,16 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const array = [...arr];
+  const result = [];
+  do {
+    const minNum = Math.min(...array);
+    const index = array.indexOf(minNum);
+    const elem = array.splice(index, 1);
+    result.push(...elem);
+  } while (array.length);
+  return result;
 }
 
 /**
@@ -425,8 +433,25 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let rightPartStr = '';
+  let leftPartStr = '';
+  let string = str;
+
+  for (let j = 0; j < iterations; j += 1) {
+    for (let i = 0; i < string.length; i += 1) {
+      if (i % 2 === 0) {
+        rightPartStr += string[i];
+      } else {
+        leftPartStr += string[i];
+      }
+    }
+
+    string = rightPartStr + leftPartStr;
+    leftPartStr = '';
+    rightPartStr = '';
+  }
+  return string;
 }
 
 /**
